@@ -39,7 +39,7 @@ $tweaks = @(
 	"InstallFirefox",
 	"InstallChrome",
 	"InstallVbox",
-	"InstallVboxguest",
+	#"InstallVboxguest",
 	"InstallDiscord",
 	"InstallPowertoys",
 	"InstallOffice",
@@ -253,6 +253,11 @@ Function Install7Zip {
 Function InstallNotepadplusplus {
 	Write-Output "Installing Notepad++"
 	choco install notepadplusplus -y
+}
+
+Function InstallVScode {
+	Write-Output "Installing VScode"
+	choco install vscode -y
 }
 
 Function InstallMediaPlayerClassic {
