@@ -34,8 +34,42 @@ $tweaks = @(
 	"InstallAdobe",
 	"Install7Zip",
 	"InstallNotepadplusplus",
-	"InstallMediaPlayerClassic",
-
+	#"InstallMediaPlayerClassic",
+	"InstallBrave",
+	"InstallFirefox",
+	"InstallChrome",
+	"InstallVbox",
+	"InstallVboxguest",
+	"InstallDiscord",
+	"InstallPowertoys",
+	"InstallOffice",
+	"InstallVScode",
+	"InstallMVPLUSPLUS",
+	"InstallGit",
+	"InstallPython3",
+	"InstallCCleaner",
+	"Installwinlogbeat",
+	"InstallTeams",
+	"InstallTeamviewer",
+	"InstallPDFCreator",
+	"InstallAutoruns",
+	"InstalliTunes",
+	"InstallNEXTCLOUD",
+	"InstallWinDirStat",
+	"InstallShareX",
+	"InstallHWI",
+	"InstallRufus",
+	"InstallRambox",
+	"InstalluTorrent",
+	"InstallMiniToolPart",
+	"InstallQuicklook",
+	"InstallEartrumpet",
+	"InstallHardlinkshell",
+	
+	
+	
+	
+	
 	### Windows Apps
 	"DebloatAll",
 
@@ -70,8 +104,8 @@ $tweaks = @(
 	"DisableNetDevicesAutoInst",  # "EnableNetDevicesAutoInst",
 	"DisableCtrldFolderAccess",	# "EnableCtrldFolderAccess",
 	# "DisableFirewall",            # "EnableFirewall",
-	"DisableDefender",            # "EnableDefender",
-	"DisableDefenderCloud",       # "EnableDefenderCloud",
+	#"DisableDefender",            # "EnableDefender",
+	#"DisableDefenderCloud",       # "EnableDefenderCloud",
 	"EnableF8BootMenu",             # "DisableF8BootMenu",
 	#"SetDEPOptOut",                 # "SetDEPOptIn",
 	# "EnableCIMemoryIntegrity",    # "DisableCIMemoryIntegrity",
@@ -115,7 +149,7 @@ $tweaks = @(
 	# "ShowSmallTaskbarIcons",        # "ShowLargeTaskbarIcons",
 	# "SetTaskbarCombineWhenFull",    # "SetTaskbarCombineNever",     # "SetTaskbarCombineAlways",
 	# "HideTaskbarPeopleIcon",        # "ShowTaskbarPeopleIcon",
-	"ShowTrayIcons",                # "HideTrayIcons",
+	#"ShowTrayIcons",                # "HideTrayIcons",
 	"DisableSearchAppInStore",      # "EnableSearchAppInStore",
 	"DisableNewAppPrompt",          # "EnableNewAppPrompt",
 	# "SetControlPanelSmallIcons",  # "SetControlPanelLargeIcons",  # "SetControlPanelCategories",
@@ -224,6 +258,146 @@ Function InstallNotepadplusplus {
 Function InstallMediaPlayerClassic {
 	Write-Output "Installing Media Player Classic (VLC Alternative)"
 	choco install mpc-hc -y
+}
+
+Function InstallBrave {
+	Write-Output "Installing Brave"
+	choco install brave -y
+}
+
+Function InstallFirefox {
+	Write-Output "Installing Firefox"
+	choco install firefox -y
+}
+
+Function InstallVbox {
+	Write-Output "Installing Virtualbox"
+	choco install virtualbox -y
+}
+
+Function InstallVboxguest {
+	Write-Output "Installing Vboxguest"
+	choco install virtualbox-guest-additions-guest.install -y
+}
+
+Function InstallDiscord {
+	Write-Output "Installing Powertoys"
+	choco install powertoys -y
+}
+
+Function InstallPowertoys {
+	Write-Output "Installing 7-Zip"
+	choco install 7zip -y
+}
+
+Function InstallOffice {
+	Write-Output "Installing Office"
+	choco install office365proplus -y
+}
+
+Function InstallMVPLUSPLUS {
+	Write-Output "Installing MVPLUSPLUS"
+	choco install vcredist140 -y
+}
+
+Function InstallGit {
+	Write-Output "Installing Git"
+	choco install git -y
+}
+
+Function InstallPython3 {
+	Write-Output "Installing Phyton3"
+	choco install python3 -y
+}
+
+Function Installccleaner {
+	Write-Output "Installing ccleaner"
+	choco install ccleaner -y
+}
+
+Function Installwinlogbeat {
+	Write-Output "Installing winlogbeat"
+	choco install winlogbeat -y
+}
+
+Function InstallTeams {
+	Write-Output "Installing teams"
+	choco install microsoft-teams -y
+}
+
+Function InstallTeamviewer {
+	Write-Output "Installing teamviewer"
+	choco install teamviewer -y
+}
+
+Function InstallPDFCreator {
+	Write-Output "Installing PDFCreator"
+	choco install pdfcreator -y
+}
+
+Function InstallAutoruns {
+	Write-Output "Installing autoruns"
+	choco install autoruns -y
+}
+
+Function InstalliTunes {
+	Write-Output "Installing iTunes"
+	choco install itunes -y
+}
+
+Function InstallNEXTCLOUD {
+	Write-Output "Installing NEXTCLOUD"
+	choco install nextcloud-client -y
+}
+
+Function InstallWinDirStat {
+	Write-Output "Installing windirstat"
+	choco install windirstat -y
+}
+
+Function InstallSharex {
+	Write-Output "Installing sharex"
+	choco install sharex -y
+}
+
+Function InstallHWI {
+	Write-Output "Installing HWI"
+	choco install hwinfo.install -y
+}
+
+Function InstallRufus {
+	Write-Output "Installing Rufus"
+	choco install rufus.install -y
+}
+
+Function InstallRambox {
+	Write-Output "Installing rambox"
+	choco install rambox -y
+}
+
+Function InstalluTorrent {
+	Write-Output "Installing utorrent"
+	choco install utorrent -y
+}
+
+Function InstallMiniToolPart {
+	Write-Output "Installing MiniToolPart"
+	choco install partitionwizard -y
+}
+
+Function InstallQuicklook {
+	Write-Output "Installing quicklook"
+	choco install quicklook -y
+}
+
+Function InstallEartrumpet {
+	Write-Output "Installing eartrumpet"
+	choco install eartrumpet -y
+}
+
+Function InstallHardlinkshell {
+	Write-Output "Installing linkshell"
+	choco install linkshellextension -y
 }
 
 ##########
