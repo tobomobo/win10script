@@ -80,8 +80,7 @@ $tweaks = @(
 	### Service Tweaks ###
 	#"DisableUpdateMSRT",          
 	"EnableUpdateMSRT",
-	#"DisableUpdateDriver",        
-	"EnableUpdateDriver",
+	"EnableUpdateDriver",        
 	#"DisableUpdateRestart",         # "EnableUpdateRestart",
 	#"DisableHomeGroups",          # "EnableHomeGroups",
 	#"DisableSharedExperiences",     # "EnableSharedExperiences",
