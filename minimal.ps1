@@ -77,10 +77,9 @@ $tweaks = @(
 	#"EnableDotNetStrongCrypto",     # "DisableDotNetStrongCrypto",
 	"DisableMeltdownCompatFlag", # "EnableMeltdownCompatFlag"    
 
-	### Service Tweaks ###
-	#"DisableUpdateMSRT",          
-	"EnableUpdateMSRT",
-	"EnableUpdateDriver",        
+### Service Tweaks ###
+	"EnableUpdateMSRT",          # "EnableUpdateMSRT",
+	"EnableUpdateDriver",        # "EnableUpdateDriver",
 	#"DisableUpdateRestart",         # "EnableUpdateRestart",
 	#"DisableHomeGroups",          # "EnableHomeGroups",
 	#"DisableSharedExperiences",     # "EnableSharedExperiences",
@@ -91,7 +90,7 @@ $tweaks = @(
 	#"DisableStorageSense",        # "EnableStorageSense",
 	#"DisableDefragmentation",     # "EnableDefragmentation",
 	#"DisableSuperfetch",          # "EnableSuperfetch",
-	#"EnableIndexing",
+	"EnableIndexing",
 	#"SetBIOSTimeUTC",             # "SetBIOSTimeLocal",
 	#"DisableHibernation",		# "EnableHibernation",          # 
 	#"EnableSleepButton",		# "DisableSleepButton",         
