@@ -144,10 +144,10 @@ $tweaks = @(
 	"ShowFileOperationsDetails",    # "HideFileOperationsDetails",
 	"DisableFileDeleteConfirm",	# "EnableFileDeleteConfirm",    
 	#"HideTaskbarSearch",
-	"ShowTaskbarSearchIcon",      # "ShowTaskbarSearchBox",
+	#"ShowTaskbarSearchIcon",      # "ShowTaskbarSearchBox",
 	"HideTaskView",                 # "ShowTaskView",
-	# "ShowSmallTaskbarIcons",        # "ShowLargeTaskbarIcons",
-	# "SetTaskbarCombineWhenFull",    # "SetTaskbarCombineNever",     # "SetTaskbarCombineAlways",
+	"ShowSmallTaskbarIcons",        # "ShowLargeTaskbarIcons",
+	"SetTaskbarCombineWhenFull",    # "SetTaskbarCombineNever",     # "SetTaskbarCombineAlways",
 	# "HideTaskbarPeopleIcon",        # "ShowTaskbarPeopleIcon",
 	#"ShowTrayIcons",                # "HideTrayIcons",
 	"DisableSearchAppInStore",      # "EnableSearchAppInStore",
@@ -286,13 +286,8 @@ Function InstallVboxguest {
 }
 
 Function InstallDiscord {
-	Write-Output "Installing Powertoys"
-	choco install powertoys -y
-}
-
-Function InstallPowertoys {
-	Write-Output "Installing 7-Zip"
-	choco install 7zip -y
+	Write-Output "Installing Discord"
+	choco install disord -y
 }
 
 Function InstallOffice {
