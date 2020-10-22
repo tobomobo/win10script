@@ -4,17 +4,13 @@
 # Primary Author Source: https://github.com/Disassembler0/Win10-Initial-Setup-Script
 # Tweaked Source: https://gist.github.com/alirobe/7f3b34ad89a159e6daa1/
 #
-#    If you're a power user looking to tweak your machinea, or doing larger roll-out.. 
-#    Use the @Disassembler0 script instead. It'll probably be more up-to-date than mine:
-#    https://github.com/Disassembler0/Win10-Initial-Setup-Script
-# 
 #    Note from author: Never run scripts without reading them & understanding what they do.
 #
 #	Addition: One command to rule them all, One command to find it, and One command to Run it! 
 #
 #     > powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://git.io/JJ8R4')"
 #
-#	Chris Titus Additions:
+#	Chris Titus Tech Additions:
 #
 #	- Dark Mode
 #	- One Command to launch and run
@@ -22,17 +18,26 @@
 #	- O&O Shutup10 CFG and Run
 #	- Added Install Programs
 #	- Added Debloat Microsoft Store Apps
+#	- Added Confirm Menu for Adobe and Brave Browser
+#	- Changed Default Apps to Notepad++, Brave, Irfanview, and more using XML Import feature
 #
 ##########
 # Default preset
 $tweaks = @(
 	### Require administrator privileges ###
 	"RequireAdmin",
-  "CreateRestorePoint",
-	### External Program Setup
-	#"InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
-	#"Install7Zip",
+	"CreateRestorePoint",
+	
+	### Chris Titus Tech Additions
+	"TitusRegistryTweaks",
+	"InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
+	"Install7Zip",
 	#"InstallNotepadplusplus",
+	#"InstallIrfanview",
+	"InstallVLC",
+	"InstallAdobe",
+	"InstallBrave",
+	"ChangeDefaultApps",
 
 	### Windows Apps
 	"DebloatAll",
@@ -57,10 +62,10 @@ $tweaks = @(
 	"DisableWAPPush",               # "EnableWAPPush",
 
 	### Security Tweaks ###
-	"SetUACLow",                  # "SetUACHigh",
+	#"SetUACLow",                  # "SetUACHigh",
 	# "EnableSharingMappedDrives",  # "DisableSharingMappedDrives",
 	# "DisableAdminShares",           # "EnableAdminShares",
-	"DisableSMB1",                # "EnableSMB1",
+	#"DisableSMB1",                # "EnableSMB1",
 	# "DisableSMBServer",           # "EnableSMBServer",
 	# "DisableLLMNR",               # "EnableLLMNR",
 	"SetCurrentNetworkPrivate",     # "SetCurrentNetworkPublic",
@@ -77,59 +82,59 @@ $tweaks = @(
 	#"EnableDotNetStrongCrypto",     # "DisableDotNetStrongCrypto",
 	"DisableMeltdownCompatFlag", # "EnableMeltdownCompatFlag"    
 
-### Service Tweaks ###
-	"EnableUpdateMSRT",          # "EnableUpdateMSRT",
-	"EnableUpdateDriver",        # "EnableUpdateDriver",
-	#"DisableUpdateRestart",         # "EnableUpdateRestart",
-	#"DisableHomeGroups",          # "EnableHomeGroups",
-	#"DisableSharedExperiences",     # "EnableSharedExperiences",
-	#"DisableRemoteAssistance",      # "EnableRemoteAssistance",
-	#"EnableRemoteDesktop",          # "DisableRemoteDesktop",
+	### Service Tweaks ###
+	#"DisableUpdateMSRT",          # "EnableUpdateMSRT",
+	#"DisableUpdateDriver",        # "EnableUpdateDriver",
+	"DisableUpdateRestart",         # "EnableUpdateRestart",
+	"DisableHomeGroups",          # "EnableHomeGroups",
+	"DisableSharedExperiences",     # "EnableSharedExperiences",
+	"DisableRemoteAssistance",      # "EnableRemoteAssistance",
+	"EnableRemoteDesktop",          # "DisableRemoteDesktop",
 	#"DisableAutoplay",              # "EnableAutoplay",
 	#"DisableAutorun",               # "EnableAutorun",
-	#"DisableStorageSense",        # "EnableStorageSense",
-	#"DisableDefragmentation",     # "EnableDefragmentation",
+	"DisableStorageSense",        # "EnableStorageSense",
+	"DisableDefragmentation",     # "EnableDefragmentation",
 	#"DisableSuperfetch",          # "EnableSuperfetch",
-	#"EnableIndexing",
-	#"SetBIOSTimeUTC",             # "SetBIOSTimeLocal",
-	#"DisableHibernation",		# "EnableHibernation",          # 
-	#"EnableSleepButton",		# "DisableSleepButton",         
-	#"DisableSleepTimeout",        # "EnableSleepTimeout",
+	"EnableIndexing",
+	"SetBIOSTimeUTC",             # "SetBIOSTimeLocal",
+	"DisableHibernation",		# "EnableHibernation",          # 
+	"EnableSleepButton",		# "DisableSleepButton",         
+	"DisableSleepTimeout",        # "EnableSleepTimeout",
 	# "DisableFastStartup",         # "EnableFastStartup",
 
 	### UI Tweaks ###
 	#"DisableActionCenter",          # "EnableActionCenter",
-	#"DisableLockScreen",            # "EnableLockScreen",
-	#"DisableLockScreenRS1",       # "EnableLockScreenRS1",
+	"EnableLockScreen",				# "DisableLockScreen",
+	"EnableLockScreenRS1",			# "DisableLockScreenRS1",
 	# "HideNetworkFromLockScreen",    # "ShowNetworkOnLockScreen",
 	# "HideShutdownFromLockScreen",   # "ShowShutdownOnLockScreen",
-	#"DisableStickyKeys",            # "EnableStickyKeys",
-	#"ShowTaskManagerDetails"        # "HideTaskManagerDetails",
-	#"ShowFileOperationsDetails",    # "HideFileOperationsDetails",
+	"DisableStickyKeys",            # "EnableStickyKeys",
+	"ShowTaskManagerDetails"        # "HideTaskManagerDetails",
+	"ShowFileOperationsDetails",    # "HideFileOperationsDetails",
 	#"DisableFileDeleteConfirm",	# "EnableFileDeleteConfirm",    
-	#"HideTaskbarSearch",
+	"HideTaskbarSearch",
 	#"ShowTaskbarSearchIcon",      # "ShowTaskbarSearchBox",
-	#"HideTaskView",                 # "ShowTaskView",
+	"HideTaskView",                 # "ShowTaskView",
 	# "ShowSmallTaskbarIcons",        # "ShowLargeTaskbarIcons",
 	# "SetTaskbarCombineWhenFull",    # "SetTaskbarCombineNever",     # "SetTaskbarCombineAlways",
-	# "HideTaskbarPeopleIcon",        # "ShowTaskbarPeopleIcon",
+	"HideTaskbarPeopleIcon",        # "ShowTaskbarPeopleIcon",
 	#"ShowTrayIcons",                # "HideTrayIcons",
-	#"DisableSearchAppInStore",      # "EnableSearchAppInStore",
-	#"DisableNewAppPrompt",          # "EnableNewAppPrompt",
+	"DisableSearchAppInStore",      # "EnableSearchAppInStore",
+	"DisableNewAppPrompt",          # "EnableNewAppPrompt",
 	# "SetControlPanelSmallIcons",  # "SetControlPanelLargeIcons",  # "SetControlPanelCategories",
 	# "SetVisualFXPerformance",     # "SetVisualFXAppearance",
 	# "AddENKeyboard",              # "RemoveENKeyboard",
-	#"EnableNumlock",             	# "DisableNumlock",
+	"EnableNumlock",             	# "DisableNumlock",
 	#"EnableDarkMode",				# "DisableDarkMode",
-	#"Stop-EdgePDF",
+	"Stop-EdgePDF",
 
 	### Explorer UI Tweaks ###
-	#"ShowKnownExtensions",          # "HideKnownExtensions",
-	#"HideHiddenFiles",
-	#"HideSyncNotifications"         # "ShowSyncNotifications",
-	#"HideRecentShortcuts",          # "ShowRecentShortcuts",
-	#"SetExplorerThisPC",            # "SetExplorerQuickAccess",
-	#"HideThisPCFromDesktop",	# "ShowThisPCOnDesktop",
+	"ShowKnownExtensions",          # "HideKnownExtensions",
+	"HideHiddenFiles",
+	"HideSyncNotifications"         # "ShowSyncNotifications",
+	"HideRecentShortcuts",          # "ShowRecentShortcuts",
+	"SetExplorerThisPC",            # "SetExplorerQuickAccess",
+	"HideThisPCFromDesktop",	# "ShowThisPCOnDesktop",
 	# "ShowUserFolderOnDesktop",    # "HideUserFolderFromDesktop",
 	# "HideDesktopFromThisPC",        # "ShowDesktopInThisPC",
 	# "HideDesktopFromExplorer",    # "ShowDesktopInExplorer",
@@ -137,32 +142,32 @@ $tweaks = @(
 	# "HideDocumentsFromExplorer",  # "ShowDocumentsInExplorer",
 	# "HideDownloadsFromThisPC",      # "ShowDownloadsInThisPC",
 	# "HideDownloadsFromExplorer",  # "ShowDownloadsInExplorer",
-	#"HideMusicFromThisPC",          # "ShowMusicInThisPC",
-	#"HideMusicFromExplorer",      # "ShowMusicInExplorer",
+	"HideMusicFromThisPC",          # "ShowMusicInThisPC",
+	"HideMusicFromExplorer",      # "ShowMusicInExplorer",
 	# "HidePicturesFromThisPC",       # "ShowPicturesInThisPC",
 	# "HidePicturesFromExplorer",   # "ShowPicturesInExplorer",
-	#"HideVideosFromThisPC",         # "ShowVideosInThisPC",
-	#"HideVideosFromExplorer",     # "ShowVideosInExplorer",
-	#"Hide3DObjectsFromThisPC",      # "Show3DObjectsInThisPC",
-	#"Hide3DObjectsFromExplorer",  # "Show3DObjectsInExplorer",
+	"HideVideosFromThisPC",         # "ShowVideosInThisPC",
+	"HideVideosFromExplorer",     # "ShowVideosInExplorer",
+	"Hide3DObjectsFromThisPC",      # "Show3DObjectsInThisPC",
+	"Hide3DObjectsFromExplorer",  # "Show3DObjectsInExplorer",
 	# "DisableThumbnails",          # "EnableThumbnails",
 	# "DisableThumbsDB",              # "EnableThumbsDB",
 
 	### Application Tweaks ###
-  #"EnableOneDrive",
-	#"UninstallMsftBloat",           # "InstallMsftBloat",
-	#"UninstallThirdPartyBloat",     # "InstallThirdPartyBloat",
+    # "EnableOneDrive",
+	"UninstallMsftBloat",           # "InstallMsftBloat",
+	"UninstallThirdPartyBloat",     # "InstallThirdPartyBloat",
 	# "UninstallWindowsStore",      # "InstallWindowsStore",
-	# "DisableXboxFeatures",          # "EnableXboxFeatures",
-	#"DisableAdobeFlash",            # "EnableAdobeFlash",
+	"DisableXboxFeatures",          # "EnableXboxFeatures",
+	"DisableAdobeFlash",            # "EnableAdobeFlash",
 	#"InstallMediaPlayer", 		# "UninstallMediaPlayer",
-	#"UninstallInternetExplorer",  # "InstallInternetExplorer",
-	#"UninstallWorkFolders",       # "InstallWorkFolders",
+	"UninstallInternetExplorer",  # "InstallInternetExplorer",
+	"UninstallWorkFolders",       # "InstallWorkFolders",
 	#"InstallLinuxSubsystem",      # "UninstallLinuxSubsystem",
 	# "InstallHyperV",              # "UninstallHyperV",
 	#"SetPhotoViewerAssociation",    # "UnsetPhotoViewerAssociation",
 	#"AddPhotoViewerOpenWith",       # "RemovePhotoViewerOpenWith",
-	#"InstallPDFPrinter"		# "UninstallPDFPrinter",
+	"InstallPDFPrinter"		# "UninstallPDFPrinter",
 	# "UninstallXPSPrinter",          # "InstallXPSPrinter",
 	# "RemoveFaxPrinter",             # "AddFaxPrinter",
 
@@ -182,9 +187,53 @@ $tweaks = @(
 )
 
 #########
-# Recommended Titus Programs
+# Recommended Titus Customizations
 #########
 
+function Show-Choco-Menu {
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string]$Title,
+    
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string]$ChocoInstall
+    )
+   
+ do
+ {
+    Clear-Host
+    Write-Host "================ $Title ================"
+    Write-Host "Y: Press 'Y' to do this."
+    Write-Host "2: Press 'N' to skip this."
+	Write-Host "Q: Press 'Q' to stop the entire script."
+    $selection = Read-Host "Please make a selection"
+    switch ($selection)
+    {
+    'y' { choco install $ChocoInstall -y }
+    'n' { Break }
+    'q' { Exit  }
+    }
+ }
+ until ($selection -match "y" -or $selection -match "n" -or $selection -match "q")
+}
+
+Function TitusRegistryTweaks {
+	Write-Output "Improving Windows Update to delay Feature updates and only install Security Updates"
+	### Fix Windows Update to delay feature updates and only update at certain times
+	$UpdatesPath = "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings"
+	If (!(Get-ItemProperty $UpdatesPath  BranchReadinessLevel)) { New-ItemProperty -Path $UpdatesPath -Name "BranchReadinessLevel" -Type DWord -Value 20 }
+	Set-ItemProperty -Path $UpdatesPath -Name "BranchReadinessLevel" -Type DWord -Value 20
+	If (!(Get-ItemProperty $UpdatesPath  DeferFeatureUpdatesPeriodInDays)) { New-ItemProperty -Path $UpdatesPath -Name "DeferFeatureUpdatesPeriodInDays" -Type DWord -Value 365	}
+	Set-ItemProperty -Path $UpdatesPath -Name "DeferFeatureUpdatesPeriodInDays" -Type DWord -Value 365
+	If (!(Get-ItemProperty $UpdatesPath  DeferQualityUpdatesPeriodInDays)) { New-ItemProperty -Path $UpdatesPath -Name "DeferQualityUpdatesPeriodInDays" -Type DWord -Value 4 }
+	Set-ItemProperty -Path $UpdatesPath -Name "DeferQualityUpdatesPeriodInDays" -Type DWord -Value 4
+	If (!(Get-ItemProperty $UpdatesPath  ActiveHoursEnd)) { New-ItemProperty -Path $UpdatesPath -Name "ActiveHoursEnd" -Type DWord -Value 2	}
+	Set-ItemProperty -Path $UpdatesPath -Name "ActiveHoursEnd" -Type DWord -Value 2
+	If (!(Get-ItemProperty $UpdatesPath  DeferQualityUpdatesPeriodInDays)) { New-ItemProperty -Path $UpdatesPath -Name "ActiveHoursStart" -Type DWord -Value 8 }
+	Set-ItemProperty -Path $UpdatesPath -Name "ActiveHoursStart" -Type DWord -Value 8
+}
 Function InstallTitusProgs {
 	Write-Output "Installing Chocolatey"
 	Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
@@ -197,8 +246,7 @@ Function InstallTitusProgs {
 }
 
 Function InstallAdobe {
-	Write-Output "Installing Adobe Acrobat Reader"
-	choco install adobereader -y
+	Show-Choco-Menu -Title "Do you want to install Adobe Acrobat Reader?" -ChocoInstall "adobereader"
 }
 
 Function InstallJava {
@@ -206,6 +254,28 @@ Function InstallJava {
 	choco install jre8 -y
 }
 
+Function InstallBrave {
+	do
+ {
+    Clear-Host
+    Write-Host "================ Do You Want to Install Brave Browser? ================"
+    Write-Host "Y: Press 'Y' to do this."
+    Write-Host "2: Press 'N' to skip this."
+	Write-Host "Q: Press 'Q' to stop the entire script."
+    $selection = Read-Host "Please make a selection"
+    switch ($selection)
+    {
+    'y' { 
+		Invoke-WebRequest -Uri "https://laptop-updates.brave.com/download/CHR253" -OutFile $env:USERPROFILE\Downloads\brave.exe
+		~/Downloads/brave.exe
+	}
+    'n' { Break }
+    'q' { Exit  }
+    }
+ }
+ until ($selection -match "y" -or $selection -match "n" -or $selection -match "q")
+	
+}
 Function Install7Zip {
 	Write-Output "Installing 7-Zip"
 	choco install 7zip -y
@@ -216,9 +286,20 @@ Function InstallNotepadplusplus {
 	choco install notepadplusplus -y
 }
 
-Function InstallMediaPlayerClassic {
-	Write-Output "Installing Media Player Classic (VLC Alternative)"
-	choco install mpc-hc -y
+Function InstallVLC {
+	Write-Output "Installing VLC"
+	choco install vlc -y
+}
+
+Function InstallIrfanview {
+	Write-Output "Installing IrFanView Image Viewer"
+	choco install irfanview -y
+}
+
+Function ChangeDefaultApps {
+	Write-Output "Setting Default Programs - Notepad++ Brave VLC IrFanView"
+	Start-BitsTransfer -Source "https://raw.githubusercontent.com/ChrisTitusTech/win10script/master/MyDefaultAppAssociations.xml" -Destination $HOME\Desktop\MyDefaultAppAssociations.xml
+	dism /online /Import-DefaultAppAssociations:"%UserProfile%\Desktop\MyDefaultAppAssociations.xml"
 }
 
 ##########
