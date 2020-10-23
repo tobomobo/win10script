@@ -34,8 +34,9 @@ $tweaks = @(
 	"InstallAdobe",
 	"Install7Zip",
 	"InstallNotepadplusplus",
-	#"InstallMediaPlayerClassic",
+	"InstallMediaPlayerClassic",
 	"InstallBrave",
+	"InstallNaps2",
 	"InstallFirefox",
 	"InstallChrome",
 	"InstallVbox",
@@ -190,7 +191,7 @@ $tweaks = @(
 	"UninstallMsftBloat",           # "InstallMsftBloat",
 	"UninstallThirdPartyBloat",     # "InstallThirdPartyBloat",
 	# "UninstallWindowsStore",      # "InstallWindowsStore",
-	# "DisableXboxFeatures",          # "EnableXboxFeatures",
+	"DisableXboxFeatures",          # "EnableXboxFeatures",
 	"DisableAdobeFlash",            # "EnableAdobeFlash",
 	"InstallMediaPlayer", 		# "UninstallMediaPlayer",
 	"UninstallInternetExplorer",  # "InstallInternetExplorer",
@@ -313,6 +314,11 @@ Function InstallPython3 {
 Function Installccleaner {
 	Write-Output "Installing ccleaner"
 	choco install ccleaner -y
+}
+
+Function InstallNaps2 {
+	Write-Output "Installing SCAN APP"
+	choco install naps2 -y
 }
 
 Function Installwinlogbeat {
